@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title  th:text="${title}"></title>
+</head>
+<body>
+<!--<table>-->
+<!--
+    <tr>
+        <th width="" 50px>ID</th>
+        <th width="" 200px>ISBN</th>
+        <th width="" 200px>Kategoria</th>
+        <th width="" 200px>Tytul</th>
+        <th width="" 200px>Autor</th>
+        <th width="" 200px>Wydawnictwo</th>
+        <th width="" 200px>Rok wydania</th>
+    </tr>-->
+
+<!--    <tr th:each = "book : ${books}">-->
+<!--        <td th:text="${book.id}"></td>-->
+<!--        <td th:text="${book.ISBN}"></td>-->
+<!--        <td th:text="${book.kategoria}"></td>-->
+<!--        <td th:text="${book.tytul}"></td>-->
+<!--        <td th:text="${book.autor}"></td>-->
+<!--        <td th:text="${book.wydawnictwo}"></td>-->
+<!--        <td th:text="${book.rokWydania}"></td>-->
+<!--    </tr>-->
+
+<!--</table>-->
+<div th:insert="~{header :: copy}"></div>
+
+<div class="card-group" th:each = "book : ${books}" >
+    <div class="card-body">
+        <h5 class="card-title" th:text="${book.tytul}"></h5>
+        <p class="card-text" th:text="${book.autor}"> </p>
+        <p class="card-text"><small class="text-muted" th:text="${book.status}"></small></p>
+    </div>
+</div>
+
+<div th:insert="~{footer :: copy}"></div>
+
+</body>
+</html>
