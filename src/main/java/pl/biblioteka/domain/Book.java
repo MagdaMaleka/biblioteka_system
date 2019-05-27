@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity(name = "Ksiazki")
@@ -13,7 +15,6 @@ public class Book  {
     @Id
     @Column(name = "id_ksiazka")
     private int id;
-
     @Column(name = "tytul")
     private String tytul;
     @Column(name = "isbn")
@@ -29,13 +30,24 @@ public class Book  {
     @Column(name = "rok_wydania")
     private Integer rokWydania;
     @Column(name = "status")
-    private Boolean status;
+    private Integer status;
+
+/*    boolean borrowed;*/
 
     public Book() {
 
     }
+/*    public String getTitle(){
+        return tytul;
+    }
 
-    public Book(int id, String tytul, String ISBN, String kategoria, String opis, String autor, String wydawnictwo, Integer rokWydania, Boolean status) {
+    public boolean isBorrowing (){
+        return borrowed;
+    }*/
+
+
+    public Book(int id, String tytul, String ISBN, String kategoria, String opis, String autor,
+                String wydawnictwo, Integer rokWydania, int status) {
         this.id = id;
         this.tytul = tytul;
         this.ISBN = ISBN;
@@ -111,11 +123,11 @@ public class Book  {
         this.rokWydania = rokWydania;
     }
 
-    public Boolean getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 

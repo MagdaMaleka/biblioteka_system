@@ -20,12 +20,13 @@ public class BookController {
         @Autowired
         private BookImpl book;
 
-        @GetMapping("/")
+        @GetMapping("/books")
         public ModelAndView ListBooks(ModelAndView model) throws IOException {
             List<Book> listBooks = book.findAll();
             model.addObject("books", listBooks);
             model.setViewName("book");
             return model;
         }
+
     }
 
