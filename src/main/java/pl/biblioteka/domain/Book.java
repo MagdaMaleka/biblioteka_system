@@ -30,7 +30,7 @@ public class Book  {
     @Column(name = "rok_wydania")
     private Integer rokWydania;
     @Column(name = "status")
-    private Integer status;
+    private String status;
 
 /*    boolean borrowed;*/
 
@@ -47,7 +47,7 @@ public class Book  {
 
 
     public Book(int id, String tytul, String ISBN, String kategoria, String opis, String autor,
-                String wydawnictwo, Integer rokWydania, int status) {
+                String wydawnictwo, Integer rokWydania, String status) {
         this.id = id;
         this.tytul = tytul;
         this.ISBN = ISBN;
@@ -123,11 +123,11 @@ public class Book  {
         this.rokWydania = rokWydania;
     }
 
-    public Integer getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

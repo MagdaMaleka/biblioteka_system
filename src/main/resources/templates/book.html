@@ -32,13 +32,37 @@
 <!--</table>-->
 <div th:insert="~{header :: header}"></div>
 
-<div class="card" style="width: 18rem;" th:each = "book : ${books}">
-    <div class="card-body">
-        <h5 class="card-title" th:text="${book.tytul}"></h5>
-        <p class="card-text" th:text="${book.autor}"></p>
-        <p class="card-text"><small class="text-muted" th:text="${book.status}"></small></p>
-        <a href="/details" class="btn btn-primary">Opis</a>
-    </div>
+<div class="row">
+    <th:block th:each="book : ${booksList}">
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <table>
+                        <tr>
+                            <h5 th:text="${book.getTytul()}"></h5>
+                            <p th:text="${book.getAutor()}"></p>
+                            <a th:text="${book.getStatus()}"></a>
+                            <!--<td class="card-title" th:text="${book.getTytul()}"></td>
+                            <td class="card-text" th:text="${book.getAutor()}"></td>-->
+                            <!--<td th:text="${book.getQuantity()}"></td>-->
+                            <!--<div class="btn-group">-->
+                            <form method="post" action="/orderBook" >
+                                <td><input type="hidden" th:name="bookId" th:value="${book.getId()}"/></td>
+                                <td><input type="submit" value="Order"></td>
+                            </form>
+                            <form method="post" action="/reserveBook" >
+                                <td><input type="hidden" th:name="bookId" th:value="${book.getId()}"/></td>
+                                <td><input type="submit" value="Reserve"></td>
+                            </form>
+                            <!--</div>-->
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </th:block>
+
 </div>
 
 

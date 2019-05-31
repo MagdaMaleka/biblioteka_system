@@ -1,3 +1,4 @@
+/*
 package pl.biblioteka.helper;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,4 +22,4 @@ public class BookImpl {
         return (List<Book>) bookDao.findAll();
     }
 
-}
+}*/
