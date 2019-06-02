@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title  th:text="${title}"></title>
+</head>
+<body>
+
+<div th:insert="~{header :: header}"></div>
+
+<div class="row">
+    <th:block th:each="book : ${book}">
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <table>
+                        <tr>
+                            <p th:text="${book.getOpis()}"></p>
+                            <form method="post" action="/orderBook" >
+                                <td><input type="hidden" th:name="bookId" th:value="${book.getId()}"/></td>
+                                <td><input type="submit" value="Order"></td>
+                            </form>
+                            <form method="post" action="/reserveBook" >
+                                <td><input type="hidden" th:name="bookId" th:value="${book.getId()}"/></td>
+                                <td><input type="submit" value="Reserve"></td>
+                            </form>
+                            <form method="get" action="/books" >
+                                <td><input type="submit" value="Back"></td>
+                            </form>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </th:block>
+
+</div>
+
+<div th:insert="~{footer :: footer}"></div>
+
+</body>
+</html>

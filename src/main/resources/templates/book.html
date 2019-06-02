@@ -54,6 +54,10 @@
                                 <td><input type="hidden" th:name="bookId" th:value="${book.getId()}"/></td>
                                 <td><input type="submit" value="Reserve"></td>
                             </form>
+                            <form method="get" action="/details" >
+                                <td><input type="hidden" th:name="bookId" th:value="${book.getId()}"/></td>
+                                <td><input type="submit" value="Details"></td>
+                            </form>
                             <!--</div>-->
                         </tr>
                     </table>

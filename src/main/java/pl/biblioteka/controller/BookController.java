@@ -41,21 +41,21 @@ public class BookController {
          }
 
     @PostMapping(value = "/orderBook")
-    public String orderBook(@RequestParam String bookId, Model model) {
+    public RedirectView orderBook(@RequestParam String bookId, Model model) {
         System.out.println("order " + bookId);
         Book book = bookDao.findById(Integer.valueOf(bookId)).orElse(null);
         book.setStatus("pozyczona");
         bookDao.save(book);
-        return "redirect:/books";
+        return new RedirectView("books");
     }
 
     @PostMapping(value = "/reserveBook")
-    public String reserveBook(@RequestParam String bookId, Model model) {
+    public RedirectView reserveBook(@RequestParam String bookId, Model model) {
         System.out.println("reserve " + bookId);
         Book book = bookDao.findById(Integer.valueOf(bookId)).orElse(null);
         book.setStatus("zarezerwowana");
         bookDao.save(book);
-        return "redirect:/books";
+        return new RedirectView("books");
     }
 
     }

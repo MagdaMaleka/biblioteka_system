@@ -32,18 +32,10 @@ public class Book  {
     @Column(name = "status")
     private String status;
 
-/*    boolean borrowed;*/
 
     public Book() {
 
     }
-/*    public String getTitle(){
-        return tytul;
-    }
-
-    public boolean isBorrowing (){
-        return borrowed;
-    }*/
 
 
     public Book(int id, String tytul, String ISBN, String kategoria, String opis, String autor,
