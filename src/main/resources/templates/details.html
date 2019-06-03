@@ -18,16 +18,39 @@
                     <table>
                         <tr>
                             <p th:text="${book.getOpis()}"></p>
-                            <form method="post" action="/orderBook" >
-                                <td><input type="hidden" th:name="bookId" th:value="${book.getId()}"/></td>
-                                <td><input type="submit" value="Order"></td>
-                            </form>
-                            <form method="post" action="/reserveBook" >
-                                <td><input type="hidden" th:name="bookId" th:value="${book.getId()}"/></td>
-                                <td><input type="submit" value="Reserve"></td>
-                            </form>
+                            <div th:if="${book.getStatus() == 'dostępna'}">
+                                <form method="post" action="/orderBook" >
+                                    <td><input type="hidden" th:name="bookId" th:value="${book.getId()}"/></td>
+                                    <td><input type="submit" value="Pożycz"></td>
+                                </form>
+
+                                <form method="post" action="/reserveBook" >
+                                    <td><input type="hidden" th:name="bookId" th:value="${book.getId()}"/></td>
+                                    <td><input type="submit" value="Zarezerwuj"></td>
+                                </form>
+                            </div>
+
+                            <div th:if="${book.getStatus() == 'zarezerwowana'}">
+                                <form method="post" action="/orderBook">
+                                    <td><input type="hidden" th:name="bookId" th:value="${book.getId()}"/></td>
+                                    <td><input type="submit" value="Pożycz"></td>
+                                </form>
+
+                                <form method="post" action="/returnBook">
+                                    <td><input type="hidden" th:name="bookId" th:value="${book.getId()}"/></td>
+                                    <td><input type="submit" value="Zwróć"></td>
+                                </form>
+                            </div>
+
+                            <div th:if="${book.getStatus() == 'pożyczona'}">
+                                <form method="post" action="/returnBook">
+                                    <td><input type="hidden" th:name="bookId" th:value="${book.getId()}"/></td>
+                                    <td><input type="submit" value="Zwróć"></td>
+                                </form>
+                            </div>
+
                             <form method="get" action="/books" >
-                                <td><input type="submit" value="Back"></td>
+                                <td><input type="submit" value="Wróć"></td>
                             </form>
                         </tr>
                     </table>

@@ -17,14 +17,14 @@ import java.util.List;
 @RestController
 public class BookController {
 
-        @Value("${app.header.book}")
-        private String title;
+    @Value("${app.header.book}")
+    private String title;
 
-        @Autowired
-        private BookDao bookDao;
+    @Autowired
+    private BookDao bookDao;
 
-        @GetMapping(value = "/books")
-        public ModelAndView listBooks(ModelAndView model) {
+    @GetMapping(value = "/books")
+    public ModelAndView listBooks(ModelAndView model) {
         //System.out.println("books");
 
         //model.addAttribute("booksList", bookDao.findAll());
@@ -38,25 +38,48 @@ public class BookController {
         model.addObject("booksList", booksList);
         model.setViewName("book");
         return model;
-         }
+    }
 
     @PostMapping(value = "/orderBook")
     public RedirectView orderBook(@RequestParam String bookId, Model model) {
         System.out.println("order " + bookId);
         Book book = bookDao.findById(Integer.valueOf(bookId)).orElse(null);
-        book.setStatus("pozyczona");
-        bookDao.save(book);
-        return new RedirectView("books");
+
+        if (book.getStatus().equals("zarezerwowana") || book.getStatus().equals("dostępna")) {
+            book.setStatus("pożyczona");
+            bookDao.save(book);
+            return new RedirectView("books");
+        } else {
+            return new RedirectView("books");
+        }
+
     }
 
     @PostMapping(value = "/reserveBook")
     public RedirectView reserveBook(@RequestParam String bookId, Model model) {
         System.out.println("reserve " + bookId);
         Book book = bookDao.findById(Integer.valueOf(bookId)).orElse(null);
-        book.setStatus("zarezerwowana");
+
+        if (book.getStatus().equals("dostępna")) {
+            book.setStatus("zarezerwowana");
+            bookDao.save(book);
+            return new RedirectView("books");
+        } else {
+            return new RedirectView("books");
+        }
+
+/*        book.setStatus("zarezerwowana");
+        bookDao.save(book);
+        return new RedirectView("books");*/
+    }
+
+    @PostMapping(value = "/returnBook")
+    public RedirectView returnBook(@RequestParam String bookId, Model model) {
+        System.out.println("return " + bookId);
+        Book book = bookDao.findById(Integer.valueOf(bookId)).orElse(null);
+        book.setStatus("dostępna");
         bookDao.save(book);
         return new RedirectView("books");
     }
-
-    }
+}
 
