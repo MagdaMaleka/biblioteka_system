@@ -4,18 +4,21 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <meta charset="UTF-8">
-
     <title th:text="${title}"></title>
-
 </head>
 
-
-<body>
+<body style="text-align: center">
 <div th:insert="header :: header">...</div>
 
 
-<div class="container">
-    This is home page content
+<div class="jumbotron">
+    <h1 class="display-4">Biblioteka</h1>
+    <p class="lead">Zapraszamy do lektury!</p>
+
+    <p class="lead">
+        <a class="btn btn-primary btn-lg" href="/books" role="button">Książki</a>
+    </p>
+
 </div>
 
 

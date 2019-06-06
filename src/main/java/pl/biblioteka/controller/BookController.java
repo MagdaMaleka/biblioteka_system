@@ -67,10 +67,6 @@ public class BookController {
         } else {
             return new RedirectView("books");
         }
-
-/*        book.setStatus("zarezerwowana");
-        bookDao.save(book);
-        return new RedirectView("books");*/
     }
 
     @PostMapping(value = "/returnBook")
